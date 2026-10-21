@@ -1,0 +1,88 @@
+<section id="contact" class="section">
+  <div class="container">
+    <div class="section-head center" appReveal>
+      <span class="eyebrow">Contact</span>
+      <h2 class="section-title">Let's build something <span class="gradient-text">great together</span>.</h2>
+      <p class="section-sub">Have a role, a project or just want to say hi? My inbox is always open.</p>
+    </div>
+
+    <div class="layout">
+      <div class="channels">
+        <div class="card channel" appReveal="left" appTilt [maxTilt]="0">
+          <span class="icon-box"><app-icon name="mail" /></span>
+          <div class="info">
+            <small>Email</small>
+            <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+          </div>
+          <button class="copy" type="button" (click)="copyEmail()" [attr.aria-label]="copied() ? 'Copied' : 'Copy email'">
+            @if (copied()) {
+              <app-icon name="check" class="pop" />
+            } @else {
+              <app-icon name="copy" />
+            }
+          </button>
+        </div>
+
+        <a class="card channel" [href]="profile.phoneHref" appReveal="left" [revealDelay]="100" appTilt [maxTilt]="0">
+          <span class="icon-box"><app-icon name="phone" /></span>
+          <div class="info">
+            <small>Phone</small>
+            <span>{{ profile.phone }}</span>
+          </div>
+          <app-icon name="arrow-right" class="go" />
+        </a>
+
+        <a class="card channel" [href]="profile.linkedin" target="_blank" rel="noopener" appReveal="left" [revealDelay]="200" appTilt [maxTilt]="0">
+          <span class="icon-box"><app-icon name="linkedin" /></span>
+          <div class="info">
+            <small>LinkedIn</small>
+            <span>Connect with me</span>
+          </div>
+          <app-icon name="arrow-right" class="go" />
+        </a>
+
+        <div class="card channel" appReveal="left" [revealDelay]="300" appTilt [maxTilt]="0">
+          <span class="icon-box"><app-icon name="map-pin" /></span>
+          <div class="info">
+            <small>Location</small>
+            <span>{{ profile.location }}</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="card form" appReveal="right" [revealDelay]="150" (submit)="send($event)">
+        <div class="field">
+          <input
+            id="name"
+            type="text"
+            placeholder=" "
+            autocomplete="name"
+            [value]="name()"
+            (input)="name.set($any($event.target).value)"
+            required
+          />
+          <label for="name">Your name</label>
+        </div>
+        <div class="field">
+          <textarea
+            id="message"
+            rows="5"
+            placeholder=" "
+            [value]="message()"
+            (input)="message.set($any($event.target).value)"
+            required
+          ></textarea>
+          <label for="message">Your message</label>
+        </div>
+        <button class="btn btn-primary" type="submit">
+          Send message <app-icon name="send" class="slide" />
+        </button>
+        <p class="hint">Opens your email app with the message ready to send.</p>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast" [class.show]="copied()" role="status">
+    <app-icon name="circle-check" /> Email copied to clipboard
+  </div>
+</section>

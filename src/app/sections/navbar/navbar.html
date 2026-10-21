@@ -1,0 +1,50 @@
+<div class="progress" [style.transform]="'scaleX(' + progress() + ')'" aria-hidden="true"></div>
+
+<header class="nav" [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
+  <div class="container nav-inner">
+    <a href="#home" class="logo" (click)="closeMenu()" aria-label="Back to top">
+      <span class="logo-mark">{{ profile.initials }}</span>
+      <span class="logo-text">{{ profile.name }}<span class="dot">.</span></span>
+    </a>
+
+    <nav class="links" [class.open]="menuOpen()" id="primary-nav" aria-label="Primary">
+      @for (link of links; track link.id; let i = $index) {
+        <a
+          [href]="'#' + link.id"
+          [class.active]="active() === link.id"
+          [style.--i]="i"
+          (click)="closeMenu()"
+        >
+          <span class="num">0{{ i + 1 }}.</span>{{ link.label }}
+        </a>
+      }
+    </nav>
+
+    <div class="actions">
+      <button
+        class="icon-btn"
+        type="button"
+        (click)="theme.toggle($event)"
+        [attr.aria-label]="theme.theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'"
+      >
+        @if (theme.theme() === 'dark') {
+          <app-icon name="sun" class="theme-icon" />
+        } @else {
+          <app-icon name="moon" class="theme-icon" />
+        }
+      </button>
+      <a class="btn btn-primary btn-sm hire" href="#contact">Hire me</a>
+      <button
+        class="burger"
+        type="button"
+        [class.open]="menuOpen()"
+        (click)="toggleMenu()"
+        aria-controls="primary-nav"
+        [attr.aria-expanded]="menuOpen()"
+        aria-label="Toggle navigation menu"
+      >
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>

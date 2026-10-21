@@ -1,0 +1,29 @@
+<footer class="footer">
+  <div class="container">
+    <div class="big">
+      <span class="gradient-text">{{ profile.name }}</span>
+    </div>
+
+    <div class="row">
+      <nav class="links" aria-label="Footer">
+        @for (link of links; track link.id) {
+          <a [href]="'#' + link.id">{{ link.label }}</a>
+        }
+      </nav>
+
+      <div class="socials">
+        <a [href]="'mailto:' + profile.email" aria-label="Email"><app-icon name="mail" /></a>
+        <a [href]="profile.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><app-icon name="linkedin" /></a>
+        <a [href]="profile.phoneHref" aria-label="Phone"><app-icon name="phone" /></a>
+      </div>
+    </div>
+
+    <p class="copy">
+      © {{ year }} {{ profile.name }} · Designed &amp; built with <app-icon name="heart" class="heart" /> and Angular
+    </p>
+  </div>
+</footer>
+
+<button class="to-top" type="button" [class.show]="showTop()" (click)="toTop()" aria-label="Back to top">
+  <app-icon name="arrow-up" />
+</button>

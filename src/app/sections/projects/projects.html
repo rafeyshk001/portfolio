@@ -1,0 +1,57 @@
+<section id="projects" class="section">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">Selected work</span>
+      <h2 class="section-title">Projects I've <span class="gradient-text">built end-to-end</span>.</h2>
+      <p class="section-sub">Full-stack applications covering authentication, search, media handling and commerce flows.</p>
+    </div>
+
+    <div class="grid">
+      @for (project of projects; track project.title; let i = $index) {
+        <article
+          class="card project"
+          appTilt
+          [appReveal]="i % 2 ? 'right' : 'left'"
+          [revealDelay]="i * 120"
+          [style.--a1]="project.accent[0]"
+          [style.--a2]="project.accent[1]"
+        >
+          <div class="glow" aria-hidden="true"></div>
+
+          <div class="preview" aria-hidden="true">
+            <div class="browser">
+              <div class="bar"><i></i><i></i><i></i><span></span></div>
+              <div class="screen">
+                <div class="hero-icon"><app-icon [name]="project.icon" /></div>
+                <div class="skeleton">
+                  <span style="--w: 70%"></span>
+                  <span style="--w: 45%"></span>
+                  <div class="tiles"><b></b><b></b><b></b></div>
+                </div>
+              </div>
+            </div>
+            <span class="index">0{{ i + 1 }}</span>
+          </div>
+
+          <div class="body">
+            <span class="kind">{{ project.kind }}</span>
+            <h3>{{ project.title }}</h3>
+            <p class="summary">{{ project.summary }}</p>
+
+            <ul class="features">
+              @for (f of project.features; track $index) {
+                <li><app-icon name="check" /> {{ f }}</li>
+              }
+            </ul>
+
+            <div class="chip-list">
+              @for (t of project.tech; track t) {
+                <span class="chip">{{ t }}</span>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

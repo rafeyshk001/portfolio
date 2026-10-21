@@ -1,0 +1,39 @@
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">About me</span>
+      <h2 class="section-title">Building interfaces people <span class="gradient-text">enjoy using</span>.</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="story">
+        @for (p of about.paragraphs; track $index) {
+          <p appReveal [revealDelay]="$index * 120">{{ p }}</p>
+        }
+
+        <ul class="facts" appReveal [revealDelay]="260">
+          @for (fact of about.facts; track fact.label) {
+            <li>
+              <span class="icon-box"><app-icon [name]="fact.icon" /></span>
+              <span>
+                <small>{{ fact.label }}</small>
+                <strong>{{ fact.value }}</strong>
+              </span>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="stats">
+        @for (stat of about.stats; track stat.label; let i = $index) {
+          <div class="card stat" appReveal="zoom" [revealDelay]="i * 110">
+            <div class="stat-value">
+              <span [appCountUp]="stat.value">{{ stat.value }}</span><span class="suffix">{{ stat.suffix }}</span>
+            </div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

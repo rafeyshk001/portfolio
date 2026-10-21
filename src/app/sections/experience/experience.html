@@ -1,0 +1,44 @@
+<section id="experience" class="section">
+  <div class="container">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">Experience</span>
+      <h2 class="section-title">Where I've <span class="gradient-text">made an impact</span>.</h2>
+    </div>
+
+    <ol class="timeline">
+      <li class="rail" appReveal aria-hidden="true"></li>
+
+      @for (job of jobs; track job.company; let i = $index) {
+        <li class="item" appReveal="left" [revealDelay]="i * 150">
+          <span class="node" aria-hidden="true"><app-icon name="briefcase" /></span>
+
+          <article class="card job" appTilt [maxTilt]="3">
+            <header class="job-head">
+              <div class="monogram">{{ job.monogram }}</div>
+              <div class="job-title">
+                <h3>{{ job.role }}</h3>
+                <p class="company">{{ job.company }}</p>
+              </div>
+              <div class="meta">
+                <span class="period">{{ job.period }}</span>
+                <span class="location"><app-icon name="map-pin" /> {{ job.location }}</span>
+              </div>
+            </header>
+
+            <ul class="points">
+              @for (point of job.points; track $index) {
+                <li><app-icon name="circle-check" /> <span>{{ point }}</span></li>
+              }
+            </ul>
+
+            <div class="chip-list">
+              @for (t of job.tech; track t) {
+                <span class="chip">{{ t }}</span>
+              }
+            </div>
+          </article>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

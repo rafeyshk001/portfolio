@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  overflow-x: clip;
+}
+
+.groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.group {
+  --mx: 50%;
+  --my: 0%;
+  padding: 1.6rem;
+  overflow: hidden;
+
+  // Gradient border that follows the cursor.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: radial-gradient(300px circle at var(--mx) var(--my), var(--c1), transparent 60%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .icon-box {
+      transform: rotate(-8deg) scale(1.08);
+    }
+  }
+
+  &.is-visible .skill {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.group-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.3rem;
+
+  .icon-box {
+    transition: transform 0.5s var(--ease);
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skill {
+  padding: 0.45rem 0.85rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s var(--ease) calc(0.3s + var(--j) * 0.06s),
+    transform 0.5s var(--ease) calc(0.3s + var(--j) * 0.06s),
+    border-color 0.3s,
+    color 0.3s,
+    background-color 0.3s;
+
+  &:hover {
+    color: var(--c2);
+    border-color: var(--c2);
+    background: color-mix(in srgb, var(--c2) 10%, transparent);
+    transition-delay: 0s;
+  }
+}
+
+/* ---------- Marquee ---------- */
+.marquee {
+  margin-top: clamp(3rem, 7vw, 5rem);
+  overflow: hidden;
+  padding-block: 1.4rem;
+  border-block: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  transform: rotate(-1.5deg) scale(1.03);
+
+  &.reveal.is-visible {
+    transform: rotate(-1.5deg) scale(1.03);
+  }
+
+  &:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+.m-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--text-dim);
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--text);
+  }
+
+  i {
+    font-style: normal;
+    font-size: 0.7em;
+    color: var(--c1);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}

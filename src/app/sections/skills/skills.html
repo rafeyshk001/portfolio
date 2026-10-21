@@ -1,0 +1,33 @@
+<section id="skills" class="section">
+  <div class="container">
+    <div class="section-head center" appReveal>
+      <span class="eyebrow">Toolbox</span>
+      <h2 class="section-title">Skills &amp; <span class="gradient-text">technologies</span></h2>
+      <p class="section-sub">The stack I use to take ideas from a blank editor to production.</p>
+    </div>
+
+    <div class="groups">
+      @for (group of groups; track group.title; let i = $index) {
+        <div class="card group" appReveal [revealDelay]="i * 100" appTilt [maxTilt]="0">
+          <div class="group-head">
+            <span class="icon-box"><app-icon [name]="group.icon" /></span>
+            <h3>{{ group.title }}</h3>
+          </div>
+          <div class="skills">
+            @for (skill of group.items; track skill; let j = $index) {
+              <span class="skill" [style.--j]="j">{{ skill }}</span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="marquee" appReveal aria-hidden="true">
+    <div class="track">
+      @for (item of marquee; track $index) {
+        <span class="m-item">{{ item }}<i>✦</i></span>
+      }
+    </div>
+  </div>
+</section>

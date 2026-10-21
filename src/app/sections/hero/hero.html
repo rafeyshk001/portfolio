@@ -1,0 +1,78 @@
+<section id="home" class="hero">
+  <div class="spotlight" aria-hidden="true"></div>
+
+  <div class="container hero-grid">
+    <div class="copy">
+      <div class="badge enter" style="--d: 0">
+        <span class="pulse"></span>
+        Open to new opportunities
+      </div>
+
+      <h1>
+        <span class="line"><span class="enter" style="--d: 1">Hi, I'm</span></span>
+        <span class="line"><span class="enter gradient-text" style="--d: 2">{{ profile.name }}</span></span>
+      </h1>
+
+      <p class="typed enter" style="--d: 3" aria-live="polite">
+        <span class="prompt">&gt;</span>
+        <span>{{ typed() }}</span><span class="caret" aria-hidden="true"></span>
+      </p>
+
+      <p class="lead enter" style="--d: 4">{{ profile.tagline }} Previously at <strong>BNP Paribas</strong>.</p>
+
+      <div class="cta enter" style="--d: 5">
+        <a href="#projects" class="btn btn-primary">
+          View my work <app-icon name="arrow-right" class="slide" />
+        </a>
+        <a [href]="profile.resumeFile" class="btn btn-ghost" download>
+          <app-icon name="download" /> Resume
+        </a>
+      </div>
+
+      <div class="socials enter" style="--d: 6">
+        <a [href]="'mailto:' + profile.email" aria-label="Email"><app-icon name="mail" /></a>
+        <a [href]="profile.linkedin" target="_blank" rel="noopener" aria-label="LinkedIn"><app-icon name="linkedin" /></a>
+        <a [href]="profile.phoneHref" aria-label="Phone"><app-icon name="phone" /></a>
+        <span class="divider"></span>
+        <span class="loc"><app-icon name="map-pin" /> {{ profile.location }}</span>
+      </div>
+    </div>
+
+    <div class="visual enter" style="--d: 3">
+      <div class="orbit-wrap" [style.--n]="orbit.length">
+        <div class="ring ring-outer"></div>
+        <div class="ring ring-inner"></div>
+
+        <div class="avatar">
+          <div class="avatar-glow"></div>
+          <div class="avatar-face">
+            <span class="initials">{{ profile.initials }}</span>
+            <span class="avatar-role">&lt;dev /&gt;</span>
+          </div>
+        </div>
+
+        <div class="orbit">
+          @for (tech of orbit; track tech; let i = $index) {
+            <div class="orbit-item" [style.--i]="i">
+              <span>{{ tech }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <pre><code><span class="k">const</span> <span class="v">dev</span> = &#123;
+  name: <span class="s">'Abu Rafey'</span>,
+  stack: [<span class="s">'Angular'</span>, <span class="s">'.NET'</span>],
+  coffee: <span class="b">true</span>
+&#125;;</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-hint" aria-label="Scroll to about section">
+    <span class="mouse"><span class="wheel"></span></span>
+    <span>Scroll</span>
+  </a>
+</section>
