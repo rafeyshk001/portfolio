@@ -6,10 +6,10 @@ export const PROFILE = {
   role: 'Software Developer',
   email: 'abc@gamil.com',
   phone: '9879797879',
-  phoneHref: 'tel:+919667890626',
+  phoneHref: 'tel:+919879797879',
   location: 'Delhi, India',
   // TODO: replace with your exact LinkedIn profile URL.
-  linkedin: 'https://www.linkedin.com/',
+  linkedin: 'dummy',
   // Drop your resume PDF into /public with this name to enable the download button.
   resumeFile: 'resume.pdf',
   tagline:
